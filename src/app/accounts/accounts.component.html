@@ -1,0 +1,54 @@
+<h1>Current assets and holdings</h1>
+<h3 *ngIf="!isLoggedIn">If you want to see your assets and holdings you need to be registered and logged in.</h3>
+<div *ngIf="isLoggedIn">
+    <h3>Account: <p id="account-details" class="account-details">{{ email }}</p></h3>
+    <h3>Liquid assets: <p class="account-details">{{ liquidAssets | number:'1.2-2'}}</p></h3>
+    <h3>Holding Trattkantarell: <p class="account-details">{{ amountTrattkantarell }}</p></h3>
+    <h3>Holding Stensopp: <p class="account-details">{{ amountStensopp }}</p></h3>
+</div>
+<!-- <br> -->
+
+<div *ngIf="isLoggedIn" class="account-form-wrapper">
+    <!-- <h1>Portfolio for account: {{ email }}</h1> -->
+    <!-- <form *ngIf="!submitted" [formGroup]="accountForm" (ngSubmit)="onSubmit()"> -->
+    <form [formGroup]="depositForm" (ngSubmit)="onSubmit()">
+        <fieldset>
+            <legend class="account-legend">Deposit to account {{ email }}</legend>
+            <p hidden>
+                <label class="account-label">
+                    Account:
+                    <!-- In order to bind the form fields to the FormControl models in register.component.ts one uses the FormControlName directive - the values of the form control names(formControlName) below are set to the name of the corresponding FormControl instance in the component class i e in register.component.ts:-->
+                    <input type="e-mail" name="e-mail" formControlName="email" class="account-input" readonly>
+                </label>
+            </p>
+            <p hidden>
+                <label class="liquid-asset-label">
+                    Liquid assets:
+                    <input type="number" name="liquidAssets" formControlName="liquidAssets" required class="liquid-asset-input">
+                </label>
+            </p>
+            <!-- <p>
+                <label class="deposit-label">
+                    Amount to deposit:
+                    <input type="number" name="deposit" formControlName="deposit" required placeholder="Enter amount to deposit" class="deposit-input">
+                </label>
+            </p> -->
+            <p>
+                <label class="deposit-label">
+                    Amount to deposit:
+                    <input type="text" name="deposit" formControlName="deposit" required placeholder="Enter an amount between 1-9999 to deposit" class="deposit-input">
+                    <div class="form-control-feedback" *ngIf="deposit.invalid && (deposit.dirty || deposit.touched)">
+                        <p *ngIf="deposit.errors.required">An amount is required</p>
+                        <p *ngIf="deposit.errors.min">The minimum amount is 1.</p>
+                        <p *ngIf="deposit.errors.pattern">The amount is not valid.</p>
+                    </div>
+                </label>
+            </p>
+            <button type="submit" [disabled]="!depositForm.valid" class="deposit-button">Deposit</button>
+        </fieldset>
+    </form>
+</div>
+
+<p>{{ errorMessage }}</p>
+<!-- <p *ngIf="!submitted">{{ errorMessage }}</p>
+<p *ngIf="submitted">{{ successMessage }}</p> -->

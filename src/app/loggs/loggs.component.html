@@ -1,0 +1,35 @@
+<!-- <p>loggs works!</p> -->
+
+<h1 id="loggs-title">My trade logg</h1>
+<h3 *ngIf="!isLoggedIn">If you want to see your trade logg you need to be registered and logged in.</h3>
+
+<!-- <p *ngIf="errorMessage!==''">Sorry, no trade loggs found!</p> -->
+
+<!-- <div *ngFor="let loggText of loggTexts">
+    <p>Email: {{ loggText.email }}</p>
+    <p>Transaction time: {{ loggText.transaction_time | date: 'medium':'+0100'}}</p> -->
+    <!-- <p>Transaction time: {{ loggText.transaction_time | date: 'short'}}</p> -->
+    <!-- <p>Mushroom: {{ loggText.mushroom }}</p>
+    <p>Amount: {{ loggText.amount }}</p>
+    <p>Realtime price: {{ loggText.realtime_price }}</p>
+</div> -->
+
+
+<table *ngIf="isLoggedIn" class="table table-scroll">
+    <caption>Transactions</caption>
+    <tr>
+        <!-- <th>Email</th> -->
+        <th>Date and time</th>
+        <th>Mushroom</th>
+        <th>Amount</th>
+        <th>Price</th>
+    </tr>
+    <tr *ngFor="let loggText of loggTexts">
+        <!-- <td>{{ loggText.email }}</td> -->
+        <td>{{ loggText.transaction_time | date: 'medium':'+0100'}}</td>
+        <!-- <td>{{ loggText.transaction_time | date: 'short'}}</td> -->
+        <td>{{ loggText.mushroom }}</td>
+        <td>{{ loggText.amount }}</td>
+        <td>{{ loggText.realtime_price }}</td>
+    </tr>
+</table>

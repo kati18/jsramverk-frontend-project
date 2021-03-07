@@ -1,0 +1,47 @@
+<div id="wrapper">
+    <header>
+        <h1>My project in course jsramverk</h1>
+    </header>
+    <!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
+    <nav>
+      <ul>
+        <li>
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Start</a>
+        </li>
+
+        <li>
+            <a routerLink="/trade" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Trade</a>
+        </li>
+
+        <li>
+            <a *ngIf="isLoggedIn" routerLink="/accounts" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">My account</a>
+        </li>
+
+        <li>
+            <a *ngIf="isLoggedIn" routerLink="/loggs" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">My trade logg</a>
+        </li>
+
+        <li>
+            <a *ngIf="!isLoggedIn" routerLink="/register" routerLinkActive="active">Register</a>
+        </li>
+
+        <li>
+            <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn; else elseBlock">Login</a>
+        </li>
+
+        <ng-template #elseBlock>
+            <a (click)="onLogout()" class="logout">Logout</a>
+        </ng-template>
+
+      </ul>
+    </nav>
+    <!-- The routed views render in the <router-outlet>-->
+    <main>
+        <!-- an element that is a router directive and that tells the router where to display routed views:-->
+        <router-outlet></router-outlet>
+    </main>
+</div> <!--End id="wrapper"-->
+<footer>
+    <p class="footertext"> This website is a project assignment in course jsramverk at BTH 2020-2021 and NOT a real trading site.</p>
+    <p class="copyright">Katja Tibe &copy; 2020-2021</p>
+</footer>

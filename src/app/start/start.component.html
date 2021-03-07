@@ -1,0 +1,27 @@
+<p id='start' hidden>Start works!</p>
+
+<div *ngFor="let startText of startTexts" class="start-wrapper">
+    <!-- <h1 id='start-title'>Welcome to Katja's trading platform!</h1> -->
+    <h1 id='start-title'>{{ startText.site }}</h1>
+    <!-- <h3>Here you can trade with Trattkantareller and Stensoppar.</h3> -->
+    <h3>{{ startText.description }}</h3>
+    <div *ngIf="isLoggedIn; else elseBlock">
+        <p id='trade-info-logged-in'> {{ startText.trade_info_logged_in }}</p>
+    </div>
+
+    <ng-template #elseBlock>
+        <p id='trade-info-not-logged-in'>{{ startText.trade_info_not_logged_in }}</p>
+    </ng-template>
+</div><!-- End div class="start-wrapper" -->
+
+
+<!--
+<div>
+    <div *ngIf="isLoggedIn; else elseBlock">
+        <p> {{ textIfLoggedIn }}</p>
+    </div>
+
+    <ng-template #elseBlock>
+        <p>{{ textIfNotLoggedIn }}</p>
+    </ng-template>
+</div> -->

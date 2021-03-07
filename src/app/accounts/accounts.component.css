@@ -1,0 +1,40 @@
+.account-legend {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.deposit-label {
+    font-size: 1.2em;
+    margin-bottom: 0.4em;
+}
+
+.deposit-input {
+    display: block;
+    width: 50%;
+    max-width: 50%;
+    font-size: 1em;
+    padding: 0.6rem 0.6rem;
+    border-radius: 0.2rem;
+}
+
+.deposit-button {
+    background-color: #fff;
+    /* color: #333; */
+    font-size: 1em;
+    padding: 0.4rem 1rem;
+    border-radius: 0.2rem;
+}
+
+.deposit-button:active {
+    background-color: #a6a6a6;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.account-details {
+    display: inline;
+    font-size: 1em;
+}
+
+.account-form-wrapper {
+    margin-top: 30px;
+}

@@ -1,0 +1,55 @@
+/* table {
+    border-collapse: collapse;
+    box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+th, td {
+    border: 1px solid white;
+    padding: 6px;
+} */
+
+caption {
+    font-size: 1.2em;
+}
+
+tr:nth-child(odd) {
+    background-color: white;
+    /* background-color: #ccc; */
+    color: red;
+}
+
+
+/* All below from course webbapp: */
+
+@media (max-width: 667px) {
+  /* .input {
+    width: 100%;
+  } */
+}
+.table {
+  box-sizing: border-box;
+  border-collapse: collapse;
+  /* box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, 0.3); */
+}
+.table th {
+  text-align: left;
+  border: 1px solid white;
+}
+.table td {
+  border: 1px solid #ccc;
+  /* border: 1px solid white; */
+}
+.table th,
+.table td {
+  white-space: nowrap;
+  padding: 0.2rem 0.8rem;
+}
+.table .number-cell {
+  text-align: right;
+}
+
+.table-scroll {
+  width: 100%;
+  display: block;
+  overflow-x: auto;
+}

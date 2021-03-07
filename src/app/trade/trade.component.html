@@ -1,0 +1,94 @@
+<!-- 210221: Drop down list added for trading mushrooms -->
+<h1 id="trade-title">Realtime prices on mushrooms</h1>
+<h3 *ngIf="!isLoggedIn">If you want to trade mushrooms you need to be registered and logged in.</h3>
+<h3 *ngIf="isLoggedIn" hidden>Account: <p class="account-details">{{ loggedInEmail }}</p></h3>
+
+<div id="chart-container">
+    <canvas baseChart id="canvas"
+        width="300"
+        height="200"
+        [datasets]="tradeData"
+        [chartType]="tradeChartType"
+        [labels]="tradeLabels"
+        [options]="tradeOptions">
+    </canvas>
+</div>
+
+<!-- <p *ngIf="isLoggedIn">Du är inloggad!</p> -->
+<!-- <a  *ngIf="isLoggedIn" routerLink="/accounts/{{ loggedInEmail }}">My account</a> -->
+<!-- <p *ngIf="isLoggedIn">Logged in email: {{ loggedInEmail }}</p> -->
+<!-- <p>{{ katjasTest }}</p> -->
+
+<form *ngIf="isLoggedIn" class="trade-form" [formGroup]="tradeForm">
+    <fieldset>
+        <legend class="trade-legend">Trade Mushrooms using account {{ loggedInEmail }}</legend>
+        <p hidden>
+            <label class="time-stamp-label">
+                Timestamp:
+                <input type="text" name="time-stamp" formControlName="timeStamp" class="time-stamp-input">
+            </label>
+        </p>
+        <p hidden>
+            <label class="account-label">
+                Account:
+                <input type="e-mail" name="e-mail" formControlName="email" class="account-input">
+            </label>
+        </p>
+        <p>
+            <label class="mushroom-label">
+                Select mushroom:
+                <!-- <select type="text" name="mushroom" formControlName="mushroom" class="mushroom-select"> -->
+                <select type="text" name="mushroom" formControlName="mushroom" class="mushroom-select" (change)="changeMushroom($event)">
+                    <option disabled>Select mushroom:</option>
+                    <!-- <option>Choose mushroom</option> -->
+                    <option>Trattkantarell</option>
+                    <option>Stensopp</option>
+                </select>
+            </label>
+        </p>
+        <p hidden>
+            <label class="liquid-assets-label">
+                Liquid assets:
+                <input type="number" name="number" formControlName="liquidAssets" class="liquid-assets-input">
+            </label>
+        </p>
+        <p hidden>
+            <label class="owned-tratt-label">
+                Holding Trattkantareller:
+                <input type="number" name="number" formControlName="ownedTratt" class="owned-tratt-input">
+            </label>
+        </p>
+        <p hidden>
+            <label class="owned-sten-label">
+                Holding Stensoppar:
+                <input type="number" name="number" formControlName="ownedSten" class="owned-sten-input">
+            </label>
+        </p>
+        <p>
+            <label class="real-time-price-label">
+                Realtime price:
+                <input type="text" name="real-time-price" formControlName="realTimePrice" required class="real-time-price-input" readonly>
+            </label>
+        </p>
+        <p>
+            <label class="amount-label">
+                Amount to buy/sell:
+                <input type="text" name="amount" formControlName="amount" required placeholder="Enter an amount between 1-9999 to buy/sell" class="buy-sell-input">
+                <div class="form-control-feedback" *ngIf="amount.invalid && (amount.dirty || amount.touched)">
+                    <p *ngIf="amount.errors.required">An amount is required</p>
+                    <p *ngIf="amount.errors.min">The minimum amount is 1.</p>
+                    <p *ngIf="amount.errors.pattern">The amount is not valid.</p>
+                </div>
+            </label>
+        </p>
+        <button #sellButton type="submit" [disabled]="!tradeForm.valid" id="sell-button" class="sell-button" (click)="onSubmit(sellButton)">Sell</button>
+        <button #buyButton tradeType="buy" type="submit" [disabled]="!tradeForm.valid" id="buy-button" class="buy-button" (click)="onSubmit(buyButton)">Buy</button>
+
+    </fieldset>
+</form>
+
+<!-- <p>{{ errorMessage }}</p> -->
+<p *ngIf="submittedNotOK">{{ errorMessage }}</p>
+<!-- <p *ngIf="submitted">{{ successMessage }}</p> -->
+<!-- <p>{{ dTimeStamp | date:'short'}}</p>
+<p>{{ dTimeStamp | date:'medium':'+0100'}}</p> -->
