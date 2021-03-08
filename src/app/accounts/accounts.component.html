@@ -36,7 +36,7 @@
             <p>
                 <label class="deposit-label">
                     Amount to deposit:
-                    <input type="text" name="deposit" formControlName="deposit" required placeholder="Enter an amount between 1-9999 to deposit" class="deposit-input">
+                    <input type="text" name="deposit" formControlName="deposit" required placeholder="Enter an even amount between 1-9999 to deposit" class="deposit-input">
                     <div class="form-control-feedback" *ngIf="deposit.invalid && (deposit.dirty || deposit.touched)">
                         <p *ngIf="deposit.errors.required">An amount is required</p>
                         <p *ngIf="deposit.errors.min">The minimum amount is 1.</p>

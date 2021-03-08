@@ -4,5 +4,5 @@ export class GlobalConstants {
     // does not work on production server:
     // public static apiBaseUrl: string = 'http://localhost:8444/';
     // to be used on production server and hence when testing on Travis, Scrutinizer:
-    public static apiBaseUrl = 'https://me-api-project.ktibe.me/';
+    public static apiBaseUrl = 'https://trade-api.ktibe.me/';
 }

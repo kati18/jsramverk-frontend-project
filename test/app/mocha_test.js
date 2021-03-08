@@ -1,6 +1,6 @@
 /**
  * Originally a duplicate of test file for application me-angular
- * Functional/UI tests for frontend application me-angular-project
+ * Functional/UI tests for frontend application trade-angular
  */
 "use strict";
 

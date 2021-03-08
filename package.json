@@ -1,5 +1,5 @@
 {
-  "name": "me-angular-project",
+  "name": "trade-angular",
   "version": "1.0.0",
   "main": null,
   "directories": {
@@ -14,7 +14,7 @@
     "posttest": "npm run lint",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng build --prod && rsync -av dist/me-angular-project/* deploy@ktibe.me:/var/www/me-angular-project.ktibe.me/html/"
+    "deploy": "ng build --prod && rsync -av dist/trade-angular/* deploy@ktibe.me:/var/www/trade-angular.ktibe.me/html/"
   },
   "private": true,
   "dependencies": {

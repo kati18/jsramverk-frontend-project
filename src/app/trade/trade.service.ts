@@ -41,7 +41,7 @@ export class TradeService {
     // Below to be used when developing locally:
     // private socket = io('http://localhost:5000');
     // Below to be used on production server i e on Debian:
-    private socket = io('https://socket-server-project.ktibe.me');
+    private socket = io('https://socket-server-trade.ktibe.me');
 
     constructor(private http: HttpClient) { }
 

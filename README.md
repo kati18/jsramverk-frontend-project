@@ -13,7 +13,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Production server
 
-Navigate to `https://me-angular-project.ktibe.me/`.
+Navigate to `https://trade-angular.ktibe.me/`.
 
 ## Code scaffolding
 
