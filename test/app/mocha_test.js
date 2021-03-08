@@ -287,11 +287,11 @@ test.describe("Trade-app", function() {
 
         browser.findElement(By.className("login-button")).click();
 
-        browser.findElement(By.linkText("Logout")).then(function(linkElement) {
-            linkElement.isDisplayed().then(function(value) {
-                assert.equal(value, true);
-            });
-        });
+        // browser.findElement(By.linkText("Logout")).then(function(linkElement) {
+        //     linkElement.isDisplayed().then(function(value) {
+        //         assert.equal(value, true);
+        //     });
+        // });
 
         browser.findElement(By.linkText("My account")).then(function(linkElement) {
             linkElement.isDisplayed().then(function(value) {
@@ -306,6 +306,7 @@ test.describe("Trade-app", function() {
         });
 
         browser.findElement(By.className("logout")).click();
+        // browser.findElement(By.linkText("Logout")).click();
 
         browser.findElement(By.linkText("Login")).then(function(linkElement) {
             linkElement.isDisplayed().then(function(value) {
@@ -347,7 +348,8 @@ test.describe("Trade-app", function() {
                 // console.log("Error.message: ", error.message);
             });
 
-            browser.findElement(By.className("logout")).click();
+            // browser.findElement(By.className("logout")).click();
+            goToNavLink("Logout");
 
             browser.findElement(By.linkText("Login")).then(function(linkElement) {
                 linkElement.isDisplayed().then(function(value) {
@@ -391,7 +393,9 @@ test.describe("Trade-app", function() {
                 // console.log("Error.message: ", error.message);
             });
 
-        browser.findElement(By.className("logout")).click();
+        // browser.findElement(By.className("logout")).click();
+        // browser.findElement(By.linkText("Logout")).click();
+        goToNavLink("Logout");
 
         browser.findElement(By.linkText("Login")).then(function(linkElement) {
             linkElement.isDisplayed().then(function(value) {
