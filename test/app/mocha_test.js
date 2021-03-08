@@ -281,12 +281,8 @@ test.describe("Trade-app", function() {
 
         promiseInputs.then(function(inputElements) {
             // console.log("inputElements: ", inputElements);
-            // to be used in dev environment:
-            inputElements[0].sendKeys("mimmi.18@test.se");
-            inputElements[1].sendKeys("Micke");
-            // to be used in production environment:
-            // inputElements[0].sendKeys("katja.18@test.se");
-            // inputElements[1].sendKeys("Micke");
+            inputElements[0].sendKeys("travis.18@test.se");
+            inputElements[1].sendKeys("prussiluskaNgillarfillifjonkan?%");
         });
 
         browser.findElement(By.className("login-button")).click();
@@ -328,12 +324,8 @@ test.describe("Trade-app", function() {
 
         promiseInputs.then(function(inputElements) {
             // console.log("inputElements: ", inputElements);
-            // to be used in dev environment:
-            inputElements[0].sendKeys("mimmi.18@test.se");
-            inputElements[1].sendKeys("Micke");
-            // to be used in production environment:
-            // inputElements[0].sendKeys("katja.18@test.se");
-            // inputElements[1].sendKeys("Micke");
+            inputElements[0].sendKeys("travis.18@test.se");
+            inputElements[1].sendKeys("prussiluskaNgillarfillifjonkan?%");
         });
 
         browser.findElement(By.className("login-button")).click();
@@ -344,7 +336,7 @@ test.describe("Trade-app", function() {
             // }).then(function() {
             //         assertById("Start works!", "start");
             }).then(function() {
-                    assertById("mimmi.18@test.se", "account-details"); // from BE
+                    assertById("travis.18@test.se", "account-details"); // from BE
             }).then(function() {
                     assertByElement("Current assets and holdings", "h1");
             }).then(function() {
@@ -376,12 +368,8 @@ test.describe("Trade-app", function() {
 
         promiseInputs.then(function(inputElements) {
             // console.log("inputElements: ", inputElements);
-            // to be used in dev environment:
-            inputElements[0].sendKeys("mimmi.18@test.se");
-            inputElements[1].sendKeys("Micke");
-            // to be used in production environment:
-            // inputElements[0].sendKeys("katja.18@test.se");
-            // inputElements[1].sendKeys("Micke");
+            inputElements[0].sendKeys("travis.18@test.se");
+            inputElements[1].sendKeys("prussiluskaNgillarfillifjonkan?%");
         });
 
         browser.findElement(By.className("login-button")).click();
@@ -424,12 +412,8 @@ test.describe("Trade-app", function() {
 
         promiseInputs.then(function(inputElements) {
             // console.log("inputElements: ", inputElements);
-            // to be used in dev environment:
-            inputElements[0].sendKeys("mimmi.18@test.se");
-            inputElements[1].sendKeys("Micke");
-            // to be used in production environment:
-            // inputElements[0].sendKeys("katja.18@test.se");
-            // inputElements[1].sendKeys("Micke");
+            inputElements[0].sendKeys("travis.18@test.se");
+            inputElements[1].sendKeys("prussiluskaNgillarfillifjonkan?%");
         });
 
         browser.findElement(By.className("login-button")).click();
@@ -438,7 +422,7 @@ test.describe("Trade-app", function() {
         browser.getTitle().then(function(title) {
                 assert.equal(title, "TradeAngular");
             }).then(function() {
-                    assertById("mimmi.18@test.se", "account-details"); // from BE
+                    assertById("travis.18@test.se", "account-details"); // from BE
             }).then(function() {
                     assertByElement("Current assets and holdings", "h1");
             }).then(function() {
@@ -453,7 +437,7 @@ test.describe("Trade-app", function() {
 
         depositInput.then(function(inputElement) {
             // console.log("inputElements: ", inputElements);
-            inputElement.sendKeys("deposittest");
+            inputElement.sendKeys("54321");
         });
 
         browser.findElement(By.className("deposit-button")).then(function(buttonElement) {
