@@ -47,6 +47,13 @@ test.describe("Trade-app", function() {
         });
     }
 
+    async function findClickEl(target) {
+        // console.log("target från goToNavLink: ", target);
+        await browser.findElement(By.className(target)).then(function(element) {
+            element.click();
+        });
+    }
+
     async function findNavLink(target) {
         // console.log("target från goToNavLink: ", target);
         await browser.findElement(By.linkText(target)).then(function(element) {
@@ -276,13 +283,15 @@ test.describe("Trade-app", function() {
             inputElements[0].sendKeys("travis.18@test.se");
             inputElements[1].sendKeys("prussiluskaNgillarfillifjonkan?%");
             }).then(function() {
-                    browser.findElement(By.className("login-button")).click();
+                    findClickEl("login-button");
+                    // browser.findElement(By.className("login-button")).click();
             }).then(function() {
                     findNavLink("Logout");
             }).then(function() {
                     findNavLink("My account");
             }).then(function() {
-                    browser.findElement(By.className("logout")).click();
+                    goToNavLink("Logout");
+                    // browser.findElement(By.className("logout")).click();
             }).then(function() {
                     done();
             }).catch(function(error) {
@@ -366,8 +375,6 @@ test.describe("Trade-app", function() {
                 // console.log("Error.message: ", error.message);
             });
 
-        // browser.findElement(By.className("logout")).click();
-        // browser.findElement(By.linkText("Logout")).click();
         goToNavLink("Logout");
 
         browser.findElement(By.linkText("Login")).then(function(linkElement) {
@@ -388,7 +395,8 @@ test.describe("Trade-app", function() {
             inputElements[0].sendKeys("travis.18@test.se");
             inputElements[1].sendKeys("prussiluskaNgillarfillifjonkan?%");
             }).then(function() {
-                    browser.findElement(By.className("login-button")).click();
+                    findClickEl("login-button");
+                    // browser.findElement(By.className("login-button")).click();
             }).then(function() {
                     goToNavLink("My trade logg");
             }).then(function() {
@@ -401,14 +409,14 @@ test.describe("Trade-app", function() {
                     assertByElement("Transactions", "caption");
             }).then(function() {
                     matchUrl("/loggs");
-            }).then(function() {
-                    goToNavLink("Logout");
-            }).then(function() {
-                    browser.findElement(By.linkText("Login")).then(function(linkElement) {
-                        linkElement.isDisplayed().then(function(value) {
-                            assert.equal(value, true);
-                        });
-                    });
+            // }).then(function() {
+            //         goToNavLink("Logout");
+            // }).then(function() {
+            //         browser.findElement(By.linkText("Login")).then(function(linkElement) {
+            //             linkElement.isDisplayed().then(function(value) {
+            //                 assert.equal(value, true);
+            //             });
+            //         });
             }).then(function() {
                     done();
             }).catch(function(error) {
@@ -424,7 +432,8 @@ test.describe("Trade-app", function() {
             inputElements[0].sendKeys("travis.18@test.se");
             inputElements[1].sendKeys("prussiluskaNgillarfillifjonkan?%");
             }).then(function() {
-                    browser.findElement(By.className("login-button")).click();
+                    findClickEl("login-button");
+                    // browser.findElement(By.className("login-button")).click();
             }).then(function() {
                     goToNavLink("My account");
             }).then(function() {
@@ -438,7 +447,8 @@ test.describe("Trade-app", function() {
             }).then(function() {
                     matchUrl("/accounts");
             }).then(function() {
-                    browser.findElement(By.className("logout")).click();
+                    findClickEl("logout");
+                    // browser.findElement(By.className("logout")).click();
             }).then(function() {
                     done();
             }).catch(function(error) {
