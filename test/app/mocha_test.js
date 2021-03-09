@@ -268,7 +268,6 @@ test.describe("Trade-app", function() {
         done();
     });
 
-
     // Test case "Test if nav link that demands authentication is visible after logging in":
     test.it("Test if nav link that demands authentication is visible after logging in", function(done) {
         goToNavLink("Login");
@@ -395,6 +394,7 @@ test.describe("Trade-app", function() {
             }).then(function() {
                 browser.getTitle().then(function(title) {
                     assert.equal(title, "TradeAngular");
+                });
             }).then(function() {
                     assertById("My trade logg", "loggs-title");
             }).then(function() {
