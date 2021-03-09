@@ -276,15 +276,15 @@ test.describe("Trade-app", function() {
             inputElements[0].sendKeys("travis.18@test.se");
             inputElements[1].sendKeys("prussiluskaNgillarfillifjonkan?%");
             }).then(function() {
-                browser.findElement(By.className("login-button")).click();
+                    browser.findElement(By.className("login-button")).click();
             }).then(function() {
-                findNavLink("Logout");
+                    findNavLink("Logout");
             }).then(function() {
-                findNavLink("My account");
+                    findNavLink("My account");
             }).then(function() {
-                browser.findElement(By.className("logout")).click();
+                    browser.findElement(By.className("logout")).click();
             }).then(function() {
-                done();
+                    done();
             }).catch(function(error) {
                 // console.log("Error.message: ", error.message);
             });
@@ -392,9 +392,9 @@ test.describe("Trade-app", function() {
             }).then(function() {
                     goToNavLink("My trade logg");
             }).then(function() {
-                browser.getTitle().then(function(title) {
-                    assert.equal(title, "TradeAngular");
-                });
+                    browser.getTitle().then(function(title) {
+                        assert.equal(title, "TradeAngular");
+                    });
             }).then(function() {
                     assertById("My trade logg", "loggs-title");
             }).then(function() {
