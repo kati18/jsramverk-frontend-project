@@ -369,21 +369,21 @@ test.describe("Trade-app", function() {
                     assertByElement("Transactions", "caption");
             }).then(function() {
                     matchUrl("/loggs");
-            }).then(function() {
-                    done();
+            // }).then(function() {
+            //         done();
             }).catch(function(error) {
                 // console.log("Error.message: ", error.message);
             });
 
-        // goToNavLink("Logout");
-        //
-        // browser.findElement(By.linkText("Login")).then(function(linkElement) {
-        //     linkElement.isDisplayed().then(function(value) {
-        //         assert.equal(value, true);
-        //     });
-        // });
-        //
-        // done();
+        goToNavLink("Logout");
+
+        browser.findElement(By.linkText("Login")).then(function(linkElement) {
+            linkElement.isDisplayed().then(function(value) {
+                assert.equal(value, true);
+            });
+        });
+
+        done();
 
     });
 
