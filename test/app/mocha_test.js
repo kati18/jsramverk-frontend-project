@@ -64,19 +64,6 @@ test.describe("Trade-app", function() {
         });
     }
 
-
-    // function assertByElement(target, elToAssert) {
-    //     // console.log("target från assertByElement", target);
-    //     browser.findElement(By.css(elToAssert)).then(function(element) {
-    //         element.getText().then(function(text) {
-    //             // console.log("text från assertByElement: ", text);
-    //             assert.equal(text, target);
-    //         });
-    //
-    //         // console.log("utanför getText");
-    //     });
-    // }
-
     async function assertByElement(target, elToAssert) {
         // console.log("target från assertByElement", target);
         await browser.findElement(By.css(elToAssert)).then(async function(element) {
@@ -281,120 +268,27 @@ test.describe("Trade-app", function() {
         done();
     });
 
-    // Test case "Test if nav links that demand authentication get visible after logging in":
-    test.it("1.Test if nav links that demand authentication are visible after logging in", function(done) {
-        goToNavLink("Login");
 
-        let promiseInputs = browser.findElements(By.className("login-input"));
-
-        promiseInputs.then(function(inputElements) {
-            // console.log("inputElements: ", inputElements);
-            inputElements[0].sendKeys("travis.18@test.se");
-            inputElements[1].sendKeys("prussiluskaNgillarfillifjonkan?%");
-        });
-
-        browser.findElement(By.className("login-button")).click();
-
-        browser.findElement(By.linkText("Logout")).then(function(linkElement) {
-            linkElement.isDisplayed().then(function(value) {
-                assert.equal(value, true);
-            });
-        });
-
-        browser.findElement(By.linkText("My account")).then(function(linkElement) {
-            linkElement.isDisplayed().then(function(value) {
-                assert.equal(value, true);
-            });
-        });
-
-        browser.findElement(By.linkText("My trade logg")).then(function(linkElement) {
-            linkElement.isDisplayed().then(function(value) {
-                assert.equal(value, true);
-            });
-        });
-
-        browser.findElement(By.className("logout")).click();
-        // browser.findElement(By.linkText("Logout")).click();
-
-        browser.findElement(By.linkText("Login")).then(function(linkElement) {
-            linkElement.isDisplayed().then(function(value) {
-                assert.equal(value, true);
-            });
-        });
-
-        done();
-    });
-
-
-    // Test case "Test if nav links that demand authentication get visible after logging in":
-    test.it("2.Test if nav links that demand authentication are visible after logging in", function(done) {
-        goToNavLink("Login");
-        let promiseInputs = browser.findElements(By.className("login-input"));
-
-        promiseInputs.then(function(inputElements) {
-            // console.log("inputElements: ", inputElements);
-            inputElements[0].sendKeys("travis.18@test.se");
-            inputElements[1].sendKeys("prussiluskaNgillarfillifjonkan?%");
-        });
-
-        browser.findElement(By.className("login-button")).click().then(function() {
-            browser.findElement(By.linkText("Logout")).then(function(linkElement) {
-                linkElement.isDisplayed().then(function(value) {
-                    assert.equal(value, true);
-                });
-            }).then(function() {
-                browser.findElement(By.linkText("My account")).then(function(linkElement) {
-                    linkElement.isDisplayed().then(function(value) {
-                        assert.equal(value, true);
-                    });
-                });
-            }).then(function() {
-                browser.findElement(By.linkText("My trade logg")).then(function(linkElement) {
-                    linkElement.isDisplayed().then(function(value) {
-                        assert.equal(value, true);
-                    });
-                });
-            }).then(function() {
-                browser.findElement(By.className("logout")).click();
-            }).then(function() {
-                browser.findElement(By.linkText("Login")).then(function(linkElement) {
-                    linkElement.isDisplayed().then(function(value) {
-                        assert.equal(value, true);
-                    });
-                });
-            }).then(function() {
-                done();
-            }).catch(function(error) {
-                // console.log("Error message: ", error.message);
-            });
-        });
-    });
-
-
-    // Test case "Test if nav links that demand authentication get visible after logging in":
-    test.it("3.Test if nav links that demand authentication are visible after logging in", function(done) {
+    // Test case "Test if nav link that demands authentication is visible after logging in":
+    test.it("Test if nav link that demands authentication is visible after logging in", function(done) {
         goToNavLink("Login");
 
         browser.findElements(By.className("login-input")).then(function(inputElements) {
             inputElements[0].sendKeys("travis.18@test.se");
             inputElements[1].sendKeys("prussiluskaNgillarfillifjonkan?%");
-        }).then(function() {
-            browser.findElement(By.className("login-button")).click();
-        }).then(function() {
-            findNavLink("Logout");
-        }).then(function() {
-            findNavLink("My account");
-        // }).then(function() {
-        //     findNavLink("My trade logg");
-        // }).then(function() {
-        //     browser.findElement(By.className("logout")).click();
-        // }).then(function() {
-        //     findNavLink("Login");
-        }).then(function() {
-            done();
-        }).catch(function(error) {
-            // console.log("Error.message: ", error.message);
-        });
+            }).then(function() {
+                browser.findElement(By.className("login-button")).click();
+            }).then(function() {
+                findNavLink("Logout");
+            }).then(function() {
+                findNavLink("My account");
+            }).then(function() {
+                browser.findElement(By.className("logout")).click();
+            }).then(function() {
+                done();
+            }).catch(function(error) {
+                // console.log("Error.message: ", error.message);
+            });
     });
 
 
@@ -443,7 +337,7 @@ test.describe("Trade-app", function() {
     });
 
     // Test case "Test to log in and go to My trade logg":
-    test.it("Test to log in and go to My trade logg", function(done) {
+    test.it("1.Test to log in and go to My trade logg", function(done) {
         goToNavLink("Login");
 
         let promiseInputs = browser.findElements(By.className("login-input"));
@@ -487,24 +381,56 @@ test.describe("Trade-app", function() {
 
     });
 
-
-    // Test case "Test to log in and go to Account":
-    test.it("1.Test to check if Deposit button is enabled", function(done) {
+    // Test case "Test to log in and go to My trade logg":
+    test.it("2.Test to log in and go to My trade logg", function(done) {
         goToNavLink("Login");
 
-        let promiseInputs = browser.findElements(By.className("login-input"));
-
-        promiseInputs.then(function(inputElements) {
-            // console.log("inputElements: ", inputElements);
+        browser.findElements(By.className("login-input")).then(function(inputElements) {
             inputElements[0].sendKeys("travis.18@test.se");
             inputElements[1].sendKeys("prussiluskaNgillarfillifjonkan?%");
-        });
+            }).then(function() {
+                    browser.findElement(By.className("login-button")).click();
+            }).then(function() {
+                    goToNavLink("My trade logg");
+            }).then(function() {
+                browser.getTitle().then(function(title) {
+                    assert.equal(title, "TradeAngular");
+            }).then(function() {
+                    assertById("My trade logg", "loggs-title");
+            }).then(function() {
+                    assertByElement("Transactions", "caption");
+            }).then(function() {
+                    matchUrl("/loggs");
+            }).then(function() {
+                    goToNavLink("Logout");
+            }).then(function() {
+                    browser.findElement(By.linkText("Login")).then(function(linkElement) {
+                        linkElement.isDisplayed().then(function(value) {
+                            assert.equal(value, true);
+                        });
+                    });
+            }).then(function() {
+                    done();
+            }).catch(function(error) {
+                // console.log("Error.message: ", error.message);
+            });
+    });
 
-        browser.findElement(By.className("login-button")).click();
+    // Test case "Test to ensure authenticated user´s account is fetched":
+    test.it("Test to ensure authenticated user´s account is fetched", function(done) {
 
-        goToNavLink("My account");
-        browser.getTitle().then(function(title) {
-                assert.equal(title, "TradeAngular");
+        goToNavLink("Login");
+        browser.findElements(By.className("login-input")).then(function(inputElements) {
+            inputElements[0].sendKeys("travis.18@test.se");
+            inputElements[1].sendKeys("prussiluskaNgillarfillifjonkan?%");
+            }).then(function() {
+                    browser.findElement(By.className("login-button")).click();
+            }).then(function() {
+                    goToNavLink("My account");
+            }).then(function() {
+                    browser.getTitle().then(function(title) {
+                        assert.equal(title, "TradeAngular");
+                    });
             }).then(function() {
                     assertById("travis.18@test.se", "account-details"); // from BE
             }).then(function() {
@@ -512,80 +438,12 @@ test.describe("Trade-app", function() {
             }).then(function() {
                     matchUrl("/accounts");
             }).then(function() {
+                    browser.findElement(By.className("logout")).click();
+            }).then(function() {
                     done();
             }).catch(function(error) {
                 // console.log("Error.message: ", error.message);
             });
-
-        let depositInput = browser.findElement(By.className("deposit-input"));
-
-        depositInput.then(function(inputElement) {
-            // console.log("inputElements: ", inputElements);
-            inputElement.sendKeys("54321");
-        });
-
-        browser.findElement(By.className("deposit-button")).then(function(buttonElement) {
-            buttonElement.isEnabled().then(function(value) {
-                assert.equal(value, false);
-            });
-        });
-
-        browser.findElement(By.className("logout")).click();
-
-        browser.findElement(By.linkText("Login")).then(function(linkElement) {
-            linkElement.isDisplayed().then(function(value) {
-                assert.equal(value, true);
-            });
-        });
-
-        done();
-
-    });
-
-    // Test case "Test to log in and go to Account":
-    test.it("2.Test to check if Deposit button is enabled", function(done) {
-        goToNavLink("Login");
-
-        browser.findElements(By.className("login-input")).then(function(inputElements) {
-            inputElements[0].sendKeys("travis.18@test.se");
-            inputElements[1].sendKeys("prussiluskaNgillarfillifjonkan?%");
-        }).then(function() {
-            browser.findElement(By.className("login-button")).click();
-        }).then(function() {
-            goToNavLink("My account");
-        }).then(function() {
-            browser.getTitle().then(function(title) {
-                assert.equal(title, "TradeAngular");
-            });
-        }).then(function() {
-                assertById("travis.18@test.se", "account-details"); // from BE
-        }).then(function() {
-                assertByElement("Current assets and holdings", "h1");
-        }).then(function() {
-                matchUrl("/accounts");
-        }).then(function() {
-            browser.findElement(By.className("deposit-input")).then(function(depositInputEl) {
-                depositInputEl.sendKeys("54321");
-            });
-        }).then(function() {
-            browser.findElement(By.className("deposit-button")).then(function(buttonElement) {
-                buttonElement.isEnabled().then(function(value) {
-                    assert.equal(value, false);
-                });
-            });
-        }).then(function() {
-            browser.findElement(By.className("logout")).click();
-        }).then(function() {
-            browser.findElement(By.linkText("Login")).then(function(linkElement) {
-                linkElement.isDisplayed().then(function(value) {
-                    assert.equal(value, true);
-                });
-            });
-        }).then(function() {
-            done();
-        }).catch(function(error) {
-            // console.log("Error.message: ", error.message);
-        });
     });
 
 });
