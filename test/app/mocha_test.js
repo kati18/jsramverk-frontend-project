@@ -47,6 +47,15 @@ test.describe("Trade-app", function() {
         });
     }
 
+    async function findNavLink(target) {
+        // console.log("target från goToNavLink: ", target);
+        await browser.findElement(By.linkText(target)).then(function(element) {
+            element.isDisplayed().then(function(value) {
+                assert.equal(value, true);
+            });
+        });
+    }
+
     function matchUrl(target) {
         browser.getCurrentUrl().then(function(url) {
             // console.log("target från matchUrl: ", target);
@@ -274,7 +283,7 @@ test.describe("Trade-app", function() {
     });
 
     // Test case "Test if nav links that demand authentication get visible after logging in":
-    test.it("Test if nav links that demand authentication are visible after logging in", function(done) {
+    test.it("1.Test if nav links that demand authentication are visible after logging in", function(done) {
         goToNavLink("Login");
 
         let promiseInputs = browser.findElements(By.className("login-input"));
@@ -287,11 +296,11 @@ test.describe("Trade-app", function() {
 
         browser.findElement(By.className("login-button")).click();
 
-        // browser.findElement(By.linkText("Logout")).then(function(linkElement) {
-        //     linkElement.isDisplayed().then(function(value) {
-        //         assert.equal(value, true);
-        //     });
-        // });
+        browser.findElement(By.linkText("Logout")).then(function(linkElement) {
+            linkElement.isDisplayed().then(function(value) {
+                assert.equal(value, true);
+            });
+        });
 
         browser.findElement(By.linkText("My account")).then(function(linkElement) {
             linkElement.isDisplayed().then(function(value) {
@@ -317,8 +326,81 @@ test.describe("Trade-app", function() {
         done();
     });
 
+
+    // Test case "Test if nav links that demand authentication get visible after logging in":
+    test.it("2.Test if nav links that demand authentication are visible after logging in", function(done) {
+        goToNavLink("Login");
+        let promiseInputs = browser.findElements(By.className("login-input"));
+
+        promiseInputs.then(function(inputElements) {
+            // console.log("inputElements: ", inputElements);
+            inputElements[0].sendKeys("travis.18@test.se");
+            inputElements[1].sendKeys("prussiluskaNgillarfillifjonkan?%");
+        });
+
+        browser.findElement(By.className("login-button")).click().then(function() {
+            browser.findElement(By.linkText("Logout")).then(function(linkElement) {
+                linkElement.isDisplayed().then(function(value) {
+                    assert.equal(value, true);
+                });
+            }).then(function() {
+                browser.findElement(By.linkText("My account")).then(function(linkElement) {
+                    linkElement.isDisplayed().then(function(value) {
+                        assert.equal(value, true);
+                    });
+                });
+            }).then(function() {
+                browser.findElement(By.linkText("My trade logg")).then(function(linkElement) {
+                    linkElement.isDisplayed().then(function(value) {
+                        assert.equal(value, true);
+                    });
+                });
+            }).then(function() {
+                browser.findElement(By.className("logout")).click();
+            }).then(function() {
+                browser.findElement(By.linkText("Login")).then(function(linkElement) {
+                    linkElement.isDisplayed().then(function(value) {
+                        assert.equal(value, true);
+                    });
+                });
+            }).then(function() {
+                done();
+            }).catch(function(error) {
+                // console.log("Error message: ", error.message);
+            });
+        });
+    });
+
+
+    // Test case "Test if nav links that demand authentication get visible after logging in":
+    test.it("3.Test if nav links that demand authentication are visible after logging in", function(done) {
+        goToNavLink("Login");
+
+        browser.findElements(By.className("login-input")).then(function(inputElements) {
+            inputElements[0].sendKeys("travis.18@test.se");
+            inputElements[1].sendKeys("prussiluskaNgillarfillifjonkan?%");
+        }).then(function() {
+            browser.findElement(By.className("login-button")).click();
+        }).then(function() {
+            findNavLink("Logout");
+        }).then(function() {
+            findNavLink("My account");
+        }).then(function() {
+            findNavLink("My trade logg");
+        }).then(function() {
+            browser.findElement(By.className("logout")).click();
+        }).then(function() {
+            findNavLink("Login");
+        }).then(function() {
+            done();
+        }).catch(function(error) {
+            // console.log("Error.message: ", error.message);
+        });
+    });
+
+
     // Test case "Test to log in and go to Account":
-    test.it("Test to log in and go to Account", function(done) {
+    test.it("1.Test to log in and go to Account", function(done) {
         goToNavLink("Login");
 
         let promiseInputs = browser.findElements(By.className("login-input"));
@@ -360,7 +442,6 @@ test.describe("Trade-app", function() {
             done();
 
     });
-
 
     // Test case "Test to log in and go to My trade logg":
     test.it("Test to log in and go to My trade logg", function(done) {
