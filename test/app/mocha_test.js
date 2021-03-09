@@ -65,10 +65,22 @@ test.describe("Trade-app", function() {
     }
 
 
-    function assertByElement(target, elToAssert) {
+    // function assertByElement(target, elToAssert) {
+    //     // console.log("target från assertByElement", target);
+    //     browser.findElement(By.css(elToAssert)).then(function(element) {
+    //         element.getText().then(function(text) {
+    //             // console.log("text från assertByElement: ", text);
+    //             assert.equal(text, target);
+    //         });
+    //
+    //         // console.log("utanför getText");
+    //     });
+    // }
+
+    async function assertByElement(target, elToAssert) {
         // console.log("target från assertByElement", target);
-        browser.findElement(By.css(elToAssert)).then(function(element) {
-            element.getText().then(function(text) {
+        await browser.findElement(By.css(elToAssert)).then(async function(element) {
+            await element.getText().then(function(text) {
                 // console.log("text från assertByElement: ", text);
                 assert.equal(text, target);
             });
@@ -76,7 +88,6 @@ test.describe("Trade-app", function() {
             // console.log("utanför getText");
         });
     }
-
 
     async function assertById(target, idToFind) {
         // console.log("target från assertById", target);
@@ -89,18 +100,6 @@ test.describe("Trade-app", function() {
             // console.log("utanför getText");
         });
     }
-
-    // function assertByElementClass(target, elToAssertByClass) {
-    //     // console.log("target från assertByElement", target);
-    //     browser.findElement(By.cssSelector(elToAssert)).then(function(element) {
-    //         element.getText().then(function(text) {
-    //             // console.log("text från assertByElement: ", text);
-    //             assert.equal(text, target);
-    //         });
-    //
-    //         // console.log("utanför getText");
-    //     });
-    // }
 
 
     // Test case "Test to go to Index":
@@ -385,12 +384,12 @@ test.describe("Trade-app", function() {
             findNavLink("Logout");
         }).then(function() {
             findNavLink("My account");
-        }).then(function() {
-            findNavLink("My trade logg");
-        }).then(function() {
-            browser.findElement(By.className("logout")).click();
-        }).then(function() {
-            findNavLink("Login");
+        // }).then(function() {
+        //     findNavLink("My trade logg");
+        // }).then(function() {
+        //     browser.findElement(By.className("logout")).click();
+        // }).then(function() {
+        //     findNavLink("Login");
         }).then(function() {
             done();
         }).catch(function(error) {
@@ -490,7 +489,7 @@ test.describe("Trade-app", function() {
 
 
     // Test case "Test to log in and go to Account":
-    test.it("Test to check if Deposit button is enabled", function(done) {
+    test.it("1.Test to check if Deposit button is enabled", function(done) {
         goToNavLink("Login");
 
         let promiseInputs = browser.findElements(By.className("login-input"));
@@ -541,6 +540,52 @@ test.describe("Trade-app", function() {
 
         done();
 
+    });
+
+    // Test case "Test to log in and go to Account":
+    test.it("2.Test to check if Deposit button is enabled", function(done) {
+        goToNavLink("Login");
+
+        browser.findElements(By.className("login-input")).then(function(inputElements) {
+            inputElements[0].sendKeys("travis.18@test.se");
+            inputElements[1].sendKeys("prussiluskaNgillarfillifjonkan?%");
+        }).then(function() {
+            browser.findElement(By.className("login-button")).click();
+        }).then(function() {
+            goToNavLink("My account");
+        }).then(function() {
+            browser.getTitle().then(function(title) {
+                assert.equal(title, "TradeAngular");
+            });
+        }).then(function() {
+                assertById("travis.18@test.se", "account-details"); // from BE
+        }).then(function() {
+                assertByElement("Current assets and holdings", "h1");
+        }).then(function() {
+                matchUrl("/accounts");
+        }).then(function() {
+            browser.findElement(By.className("deposit-input")).then(function(depositInputEl) {
+                depositInputEl.sendKeys("54321");
+            });
+        }).then(function() {
+            browser.findElement(By.className("deposit-button")).then(function(buttonElement) {
+                buttonElement.isEnabled().then(function(value) {
+                    assert.equal(value, false);
+                });
+            });
+        }).then(function() {
+            browser.findElement(By.className("logout")).click();
+        }).then(function() {
+            browser.findElement(By.linkText("Login")).then(function(linkElement) {
+                linkElement.isDisplayed().then(function(value) {
+                    assert.equal(value, true);
+                });
+            });
+        }).then(function() {
+            done();
+        }).catch(function(error) {
+            // console.log("Error.message: ", error.message);
+        });
     });
 
 });
