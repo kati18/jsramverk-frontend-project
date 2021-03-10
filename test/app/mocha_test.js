@@ -317,19 +317,15 @@ test.describe("Trade-app", function() {
         goToNavLink("My account");
         browser.getTitle().then(function(title) {
                 assert.equal(title, "TradeAngular");
-            // }).then(function() {
-            //         assertById("travis.18@test.se", "account-details"); // from BE
             }).then(function() {
                     assertByElement("Current assets and holdings", "h1");
             }).then(function() {
                     matchUrl("/accounts");
-            // }).then(function() {
-            //         done();
             }).catch(function(error) {
                 // console.log("Error.message: ", error.message);
             });
 
-            // browser.findElement(By.className("logout")).click();
+            // browser.findElement(By.className("logout")).click(); alt.:
             goToNavLink("Logout");
 
             browser.findElement(By.linkText("Login")).then(function(linkElement) {
@@ -359,16 +355,12 @@ test.describe("Trade-app", function() {
         goToNavLink("My trade logg");
         browser.getTitle().then(function(title) {
                 assert.equal(title, "TradeAngular");
-            // }).then(function() {
-            //         assertById("Start works!", "start");
             }).then(function() {
                     assertById("My trade logg", "loggs-title");
             }).then(function() {
                     assertByElement("Transactions", "caption");
             }).then(function() {
                     matchUrl("/loggs");
-            // }).then(function() {
-            //         done();
             }).catch(function(error) {
                 // console.log("Error.message: ", error.message);
             });
@@ -385,43 +377,41 @@ test.describe("Trade-app", function() {
 
     });
 
-    // Test case "Test to log in and go to My trade logg":
-    test.it("2.Test to log in and go to My trade logg", function(done) {
-        goToNavLink("Login");
-        let loginInputs = browser.findElements(By.className("login-input"));
-
-        loginInputs.then(function(inputElements) {
-            inputElements[0].sendKeys("travis.18@test.se");
-            inputElements[1].sendKeys("prussiluskaNgillarfillifjonkan?%");
-        });
-
-        browser.findElement(By.className("login-button")).click();
-
-        goToNavLink("My trade logg");
-        browser.getTitle().then(function(title) {
-                        assert.equal(title, "TradeAngular");
-            }).then(function() {
-                    assertById("My trade logg", "loggs-title");
-            }).then(function() {
-                    assertByElement("Transactions", "caption");
-            }).then(function() {
-                    matchUrl("/loggs");
-            }).then(function() {
-                    goToNavLink("Logout");
-            }).then(function() {
-                    browser.findElement(By.linkText("Login")).then(function(linkElement) {
-                        linkElement.isDisplayed().then(function(value) {
-                            assert.equal(value, true);
-                        });
-                    });
-            // }).then(function() {
-            //         done();
-            }).catch(function(error) {
-                // console.log("Error.message: ", error.message);
-            });
-
-        done();
-    });
+    // // Test case "2.Test to log in and go to My trade logg" - also works:
+    // test.it("2.Test to log in and go to My trade logg", function(done) {
+    //     goToNavLink("Login");
+    //     let loginInputs = browser.findElements(By.className("login-input"));
+    //
+    //     loginInputs.then(function(inputElements) {
+    //         inputElements[0].sendKeys("travis.18@test.se");
+    //         inputElements[1].sendKeys("prussiluskaNgillarfillifjonkan?%");
+    //     });
+    //
+    //     browser.findElement(By.className("login-button")).click();
+    //
+    //     goToNavLink("My trade logg");
+    //     browser.getTitle().then(function(title) {
+    //                     assert.equal(title, "TradeAngular");
+    //         }).then(function() {
+    //                 assertById("My trade logg", "loggs-title");
+    //         }).then(function() {
+    //                 assertByElement("Transactions", "caption");
+    //         }).then(function() {
+    //                 matchUrl("/loggs");
+    //         }).then(function() {
+    //                 goToNavLink("Logout");
+    //         }).then(function() {
+    //                 browser.findElement(By.linkText("Login")).then(function(linkElement) {
+    //                     linkElement.isDisplayed().then(function(value) {
+    //                         assert.equal(value, true);
+    //                     });
+    //                 });
+    //         }).catch(function(error) {
+    //             // console.log("Error.message: ", error.message);
+    //         });
+    //
+    //     done();
+    // });
 
     // Test case "Test to ensure authenticated user´s account is fetched":
     test.it("Test to ensure authenticated user´s account is fetched", function(done) {
@@ -445,10 +435,8 @@ test.describe("Trade-app", function() {
             }).then(function() {
                     matchUrl("/accounts");
             }).then(function() {
+                    // browser.findElement(By.className("logout")).click() alt.:;
                     findClickEl("logout");
-                    // browser.findElement(By.className("logout")).click();
-            // }).then(function() {
-            //         done();
             }).catch(function(error) {
                 // console.log("Error.message: ", error.message);
             });
