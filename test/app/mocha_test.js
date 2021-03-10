@@ -318,9 +318,7 @@ test.describe("Trade-app", function() {
         browser.getTitle().then(function(title) {
                 assert.equal(title, "TradeAngular");
             // }).then(function() {
-            //         assertById("Start works!", "start");
-            }).then(function() {
-                    assertById("travis.18@test.se", "account-details"); // from BE
+            //         assertById("travis.18@test.se", "account-details"); // from BE
             }).then(function() {
                     assertByElement("Current assets and holdings", "h1");
             }).then(function() {
