@@ -1,5 +1,5 @@
 <h1 *ngIf="!submitted" id="register-title">Welcome to register!</h1>
-<h2 *ngIf="submitted">You are now registered and can log in to add and/or edit reports.</h2>
+<h2 *ngIf="submitted">You are now registered and can log in to see your acccount, trade and/or see your trade logg.</h2>
 
 <!-- Below in order to tell Angular that there is a model for the form as well as listening for a submit event emitted by the form element. The submit event is triggered by clicking the button with a type="submit" and is caught by the ngSubmit directive(the ngSubmit directive binds itself to the click event of the button with type="submit") which then invokes the onSubmit() method in register.component.ts -->
 <form *ngIf="!submitted" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
